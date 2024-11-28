@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Reviews</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">📚 Book Reviews</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#reviews-section">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#add-a-section">Add Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact-section">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<!-- Main Content -->
+<main class="container my-5">
+  <h1 id="reviews-section" class="text-center">Welcome to Book Reviews</h1>
+  <!-- Add your reviews table and form sections here -->
+  <div class="container mt-5">
+
+
+    <div id="reviews-list" class="mt-4">
+        <h2>All Reviews</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="reviews-table-body">
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- Add/Edit Review Form -->
+<div class="container mt-4">
+  <section id="add-a-section">
+<h2 id="formTitle">Add a New Review</h2>
+<form id="addReviewForm">
+    <input type="hidden" id="reviewId"> <!-- Hidden field for review ID -->
+    <div class="mb-3">
+        <label for="bookTitle" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="bookTitle" required>
+    </div>
+    <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" required>
+    </div>
+
+
+<!-- 
+    <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <select class="form-select" id="rating" required>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+        </select>
+    </div>
+ -->
+
+
+ <div class="mb-3">
+  <label for="rating" class="form-label">Rating</label>
+  <div id="star-rating" class="star-rating">
+      <!-- Stars will be dynamically generated here -->
+  </div>
+  <input type="hidden" id="rating" name="rating" value="0" />
+</div>
+
+                                              <!-- inline css and js for star rating-->
+                                              <style>
+                                                .star-rating {
+                                                    display: flex;
+                                                    gap: 5px; 
+                                                    cursor: pointer;
+                                                }
+
+                                                .star {
+                                                    font-size: 2rem; 
+                                                    color: #ccc; 
+                                                    transition: color 0.3s;
+                                                }
+
+                                                .star.selected,
+                                                .star:hover,
+                                                .star:hover ~ .star {
+                                                    color: #ffc107; 
+                                                }
+                                              </style>
+
+
+                                              <script>
+                                                document.addEventListener("DOMContentLoaded", function () {
+                                                    const starContainer = document.getElementById("star-rating");
+                                                    const hiddenRatingInput = document.getElementById("rating");
+
+                                                    const totalStars = 5;
+
+                                                    for (let i = 1; i <= totalStars; i++) {
+                                                        const star = document.createElement("span");
+                                                        star.classList.add("star");
+                                                        star.setAttribute("data-value", i);
+                                                        star.textContent = "★"; 
+                                                        starContainer.appendChild(star);
+                                                    }
+
+                                                  
+                                                    const stars = document.querySelectorAll("#star-rating .star");
+                                                    stars.forEach((star) => {
+                                                        star.addEventListener("mouseover", function () {
+                                                            highlightStars(star.getAttribute("data-value"));
+                                                        });
+
+                                                        star.addEventListener("click", function () {
+                                                            const ratingValue = star.getAttribute("data-value");
+                                                            hiddenRatingInput.value = ratingValue;
+                                                            highlightStars(ratingValue);
+                                                        });
+
+                                                        star.addEventListener("mouseout", function () {
+                                                            highlightStars(hiddenRatingInput.value); 
+                                                        });
+                                                    });
+
+                                                    
+                                                    function highlightStars(rating) {
+                                                        stars.forEach((star) => {
+                                                            if (star.getAttribute("data-value") <= rating) {
+                                                                star.classList.add("selected");
+                                                            } else {
+                                                                star.classList.remove("selected");
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                              </script>
+
+
+
+    
+    <div class="mb-3">
+        <label for="reviewText" class="form-label">Review Text</label>
+        <textarea class="form-control" id="reviewText" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Review</button>
+</form>
+</section>
+</div>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>About Book Reviews</h5>
+        <p>Created by Undergradute SLTC Reseach university's <br>Tharindu Sampath Balasooriya <br>0716542078 </p>
+      </div>
+      <div class="col-md-6">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#reviews-section" class="text-white">Reviews</a></li>
+          <li><a href="#add-review-section" class="text-white">Add Review</a></li>
+          <li><a href="#contact-section" class="text-white">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="bg-light">
+    <p class="mb-0">
+      &copy; 2024 Book Reviews | Follow us: 
+      <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.linkedin.com/in/tharindu-balasooriya-4719b722b/" class="text-white me-2"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/tharindutsb" class="text-white me-2"><i class="fab fa-github"></i></a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
+<script src="Rating.js"></script>
+
+</body>
+</html>

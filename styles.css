@@ -1,0 +1,40 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #343a40;
+}
+
+#reviews-list table {
+    width: 100%;
+    border: 1px solid #dee2e6;
+}
+
+#reviews-list th {
+    text-align: center;
+}
+
+#reviews-list td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+#review-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#review-form h2 {
+    color: #495057;
+}
+
+#review-form button {
+    margin-right: 10px;
+}
+
+
+
