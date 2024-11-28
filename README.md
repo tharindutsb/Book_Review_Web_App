@@ -24,7 +24,7 @@ Technologies Used
 Setup Instructions
 1. Clone the repository using Git.
 
-git clone https://github.com/tharindytsb/book-reviews-web-application.git
+git clone https://github.com/tharindutsb/Book_Review_Web_App/
 
 2. Import database into phymyadmin (XAMPP control panel ->MySQL->admin)
     
